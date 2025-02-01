@@ -10,12 +10,12 @@ import (
 func TestDisplayName(t *testing.T) {
 
 	want := "hello, marcus"
-	g := greeting.Greetie{
-		Name: "marcus",
-	}
 	buf := &bytes.Buffer{}
+	g := greeting.New()
+	g.Output = buf
+	g.Name = "marcus"
 
-	g.Greet(buf)
+	g.Greet()
 
 	got := buf.String()
 	if got != want {
@@ -25,12 +25,17 @@ func TestDisplayName(t *testing.T) {
 
 func TestReadName(t *testing.T) {
 	want := "marcus"
-	g := greeting.Greetie{}
-	input := bytes.NewBufferString("marcus\n")
-	g.ReadName(&bytes.Buffer{}, input)
+	g := greeting.New()
+	g.Input = bytes.NewBufferString("marcus\n")
+	g.ReadName()
 
 	got := g.Name
 	if got != want {
 		t.Errorf("got %s, want %s", got, want)
 	}
 }
+
+// func TestRun(t *testing.T) {
+// 	g := greeting.Greetie{}
+// 	g.Run()
+// }

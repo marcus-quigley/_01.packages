@@ -3,17 +3,33 @@ package greeting
 import (
 	"fmt"
 	"io"
+	"os"
 )
 
 type Greetie struct {
-	Name string
+	Name   string
+	Output io.Writer
+	Input  io.Reader
 }
 
-func (g Greetie) Greet(w io.Writer) {
-	fmt.Fprintf(w, "hello, %s", g.Name)
+func Run() {
+	g := New()
+	g.ReadName()
+	g.Greet()
 }
 
-func (g *Greetie) ReadName(w io.Writer, r io.Reader) {
-	fmt.Fprintf(w, "name, fucko?")
-	fmt.Fscanln(r, &g.Name)
+func New() Greetie {
+	return Greetie{
+		Output: os.Stdout,
+		Input:  os.Stdin,
+	}
+}
+
+func (g Greetie) Greet() {
+	fmt.Fprintf(g.Output, "hello, %s", g.Name)
+}
+
+func (g *Greetie) ReadName() {
+	fmt.Fprintf(g.Output, "name, fucko?")
+	fmt.Fscanln(g.Input, &g.Name)
 }
