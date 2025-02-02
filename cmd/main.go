@@ -1,14 +1,25 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 
-	greeting "github.com/mq/packages/greeting"
+	"github.com/mq/packages/greeting"
 	"github.com/mq/packages/hello"
 )
 
 func main() {
+
+	lines := 0
+	input := bufio.NewScanner(os.Stdin)
+	for input.Scan() {
+		lines++
+	}
+	fmt.Println(lines)
+}
+
+func main2() {
 	greeting.GreetUser(os.Stdout, os.Stdin)
 
 	//hello.PrintTo(os.Stdout)
