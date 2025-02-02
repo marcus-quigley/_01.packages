@@ -11,7 +11,8 @@ import (
 func main() {
 	greeting.GreetUser(os.Stdout, os.Stdin)
 
-	hello.PrintTo(os.Stdout)
+	//hello.PrintTo(os.Stdout)
+	hello.Main()
 }
 
 func main1() {
