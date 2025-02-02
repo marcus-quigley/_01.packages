@@ -1,28 +1,44 @@
 package main
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"os"
+	"strings"
 
-	"github.com/mq/packages/count"
 	"github.com/mq/packages/greeting"
 	"github.com/mq/packages/hello"
 )
 
 func main() {
-
-	// lines := 0
-	// input := bufio.NewScanner(os.Stdin)
-	// for input.Scan() {
-	// 	lines++
-	// }
-	// fmt.Println(lines)
-	c, _ := count.NewCountie(
-		count.WithInput(bytes.NewBufferString("this\nis\nit\n")),
-	)
-	fmt.Fprintf(os.Stdout, "lines: %d", c.Lines())
+	input := bytes.NewBufferString("this\nis\nit\n")
+	match := "is"
+	lines := []string{}
+	// m:= NewMatch
+	scanner := bufio.NewScanner(input)
+	for scanner.Scan() {
+		l := scanner.Text()
+		if strings.Contains(l, match) {
+			lines = append(lines, l)
+		}
+	}
+	fmt.Println(lines)
 }
+
+// func main3() {
+
+// 	// lines := 0
+// 	// input := bufio.NewScanner(os.Stdin)
+// 	// for input.Scan() {
+// 	// 	lines++
+// 	// }
+// 	// fmt.Println(lines)
+// 	c, _ := count.NewCountie(
+// 		count.WithInput(bytes.NewBufferString("this\nis\nit\n")),
+// 	)
+// 	fmt.Fprintf(os.Stdout, "lines: %d", c.Lines())
+// }
 
 func main2() {
 	greeting.GreetUser(os.Stdout, os.Stdin)
