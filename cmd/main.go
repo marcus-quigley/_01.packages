@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"os"
 
-	greeting "github.com/mq/packages"
+	greeting "github.com/mq/packages/greeting"
+	"github.com/mq/packages/hello"
 )
 
 func main() {
 	greeting.GreetUser(os.Stdout, os.Stdin)
-	//greeting.Run()
+
+	hello.PrintTo(os.Stdout)
 }
 
 func main1() {

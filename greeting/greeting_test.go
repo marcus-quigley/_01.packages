@@ -6,7 +6,7 @@ import (
 	"testing"
 	"testing/iotest"
 
-	greeting "github.com/mq/packages"
+	greeting "github.com/mq/packages/greeting"
 )
 
 // func TestDisplayName(t *testing.T) {
