@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	greeting "github.com/mq/packages"
 )
 
 func main() {
-
-	greeting.Run()
+	greeting.GreetUser(os.Stdout, os.Stdin)
+	//greeting.Run()
 }
 
 func main1() {
