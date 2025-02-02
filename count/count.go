@@ -5,17 +5,29 @@ import (
 	"io"
 )
 
+type option func(*Countie)
+
 type Countie struct {
-	Input io.Reader
+	input io.Reader
 }
 
-func NewCountie() *Countie {
-	return &Countie{}
+func NewCountie(opts ...option) *Countie {
+	c := &Countie{}
+	for _, o := range opts {
+		o(c)
+	}
+	return c
+}
+
+func WithInput(input io.Reader) option {
+	return func(c *Countie) {
+		c.input = input
+	}
 }
 
 func (c Countie) Lines() int {
 	i := 0
-	scanner := bufio.NewScanner(c.Input)
+	scanner := bufio.NewScanner(c.input)
 	for scanner.Scan() {
 		i += 1
 	}

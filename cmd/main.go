@@ -1,22 +1,27 @@
 package main
 
 import (
-	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 
+	"github.com/mq/packages/count"
 	"github.com/mq/packages/greeting"
 	"github.com/mq/packages/hello"
 )
 
 func main() {
 
-	lines := 0
-	input := bufio.NewScanner(os.Stdin)
-	for input.Scan() {
-		lines++
-	}
-	fmt.Println(lines)
+	// lines := 0
+	// input := bufio.NewScanner(os.Stdin)
+	// for input.Scan() {
+	// 	lines++
+	// }
+	// fmt.Println(lines)
+	c := count.NewCountie(
+		count.WithInput(bytes.NewBufferString("this\nis\nit\n")),
+	)
+	fmt.Fprintf(os.Stdout, "lines: %d", c.Lines())
 }
 
 func main2() {

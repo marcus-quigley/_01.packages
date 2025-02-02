@@ -9,8 +9,9 @@ import (
 
 func TestCountSuccess(t *testing.T) {
 	input := bytes.NewBufferString("hello\nyou\ntoo\n")
-	c := count.NewCountie()
-	c.Input = input
+	c := count.NewCountie(
+		count.WithInput(input),
+	)
 
 	want := 3
 	got := c.Lines()
