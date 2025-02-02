@@ -2,26 +2,34 @@ package count
 
 import (
 	"bufio"
+	"errors"
 	"io"
 )
 
-type option func(*Countie)
+type option func(*Countie) error
 
 type Countie struct {
 	input io.Reader
 }
 
-func NewCountie(opts ...option) *Countie {
+func NewCountie(opts ...option) (*Countie, error) {
 	c := &Countie{}
 	for _, o := range opts {
-		o(c)
+		e := o(c)
+		if e != nil {
+			return nil, e
+		}
 	}
-	return c
+	return c, nil
 }
 
 func WithInput(input io.Reader) option {
-	return func(c *Countie) {
+	return func(c *Countie) error {
+		if input == nil {
+			return errors.New("nil input reader")
+		}
 		c.input = input
+		return nil
 	}
 }
 

@@ -9,9 +9,12 @@ import (
 
 func TestCountSuccess(t *testing.T) {
 	input := bytes.NewBufferString("hello\nyou\ntoo\n")
-	c := count.NewCountie(
+	c, e := count.NewCountie(
 		count.WithInput(input),
 	)
+	if e != nil {
+		t.Fatalf("cant create coiuntie: %v", e.Error())
+	}
 
 	want := 3
 	got := c.Lines()

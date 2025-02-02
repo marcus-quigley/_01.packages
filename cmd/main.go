@@ -18,7 +18,7 @@ func main() {
 	// 	lines++
 	// }
 	// fmt.Println(lines)
-	c := count.NewCountie(
+	c, _ := count.NewCountie(
 		count.WithInput(bytes.NewBufferString("this\nis\nit\n")),
 	)
 	fmt.Fprintf(os.Stdout, "lines: %d", c.Lines())
