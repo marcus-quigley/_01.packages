@@ -7,11 +7,16 @@ import (
 	"os"
 	"strings"
 
+	"github.com/mq/packages/chap3/count"
 	"github.com/mq/packages/greeting"
 	"github.com/mq/packages/hello"
 )
 
 func main() {
+	count.Main()
+}
+
+func main4() {
 	input := bytes.NewBufferString("this\nis\nit\n")
 	match := "is"
 	lines := []string{}
