@@ -7,13 +7,14 @@ import (
 	"os"
 	"strings"
 
-	"github.com/mq/packages/chap3/count"
 	"github.com/mq/packages/greeting"
 	"github.com/mq/packages/hello"
+	"github.com/mq/packages/writer"
 )
 
 func main() {
-	os.Exit(count.Main())
+	os.Exit(writer.Main())
+	//os.Exit(count.Main())
 }
 
 func main4() {

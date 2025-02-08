@@ -17,7 +17,7 @@
             "request": "launch",
             "mode": "debug",
             "program": "./cmd",
-            "args": ["hello world"],
+            "args": ["writefile -size 1000 zero.dat"],
             "console": "integratedTerminal",
           }
     ]
