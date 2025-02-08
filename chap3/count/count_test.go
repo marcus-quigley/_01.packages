@@ -22,7 +22,7 @@ func Test(t *testing.T) {
 	})
 }
 
-func TestCountSuccess(t *testing.T) {
+func Test_LinesSuccess(t *testing.T) {
 	input := bytes.NewBufferString("hello\nyou\ntoo\n")
 	c, e := count.NewCounter(
 		count.WithInput(input),
@@ -37,6 +37,22 @@ func TestCountSuccess(t *testing.T) {
 		t.Errorf("got %d want %d", got, want)
 	}
 
+}
+
+func Test_WordsSuccess(t *testing.T) {
+	//input := bytes.NewBufferString("hello you\nits a nice day\nchamp\n")
+	input := bytes.NewBufferString("1\n2 words\n3 this time")
+	c, e := count.NewCounter(
+		count.WithInput(input),
+	)
+	if e != nil {
+		t.Fatalf("cant create coiuntie: %v", e.Error())
+	}
+	want := 6
+	got := c.Words()
+	if got != want {
+		t.Errorf("got %d want %d", got, want)
+	}
 }
 func TestWithInputFromArgs_SetsInputToGivenPath(t *testing.T) {
 	args := []string{"testdata/three_lines.txt"}
@@ -54,7 +70,6 @@ func TestWithInputFromArgs_SetsInputToGivenPath(t *testing.T) {
 }
 
 func TestWithInputFromArgs_IgnoresEmptyArgs(t *testing.T) {
-	t.Parallel()
 	inputBuf := bytes.NewBufferString("1\n2\n3")
 	c, err := count.NewCounter(
 		count.WithInput(inputBuf),

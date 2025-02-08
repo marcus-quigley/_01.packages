@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	count.Main()
+	os.Exit(count.Main())
 }
 
 func main4() {
