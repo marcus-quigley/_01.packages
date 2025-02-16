@@ -9,10 +9,31 @@ import (
 
 	"github.com/mq/packages/greeting"
 	"github.com/mq/packages/hello"
+	"github.com/mq/packages/shell"
 	"github.com/mq/packages/writer"
 )
 
 func main() {
+	fmt.Print("> ")
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		line := scanner.Text()
+		cmd, e := shell.CreateCommand(line)
+		if e != nil {
+			fmt.Printf("error creating command %v\n", e)
+			continue
+		}
+		out, e := cmd.CombinedOutput()
+		if e != nil {
+			fmt.Printf("error after creating command %v\n", e)
+		}
+		fmt.Printf("%s\n", out)
+		fmt.Print("> ")
+	}
+	fmt.Println("see ya...")
+}
+
+func main5() {
 	os.Exit(writer.Main())
 	//os.Exit(count.Main())
 }
@@ -37,7 +58,7 @@ func main4() {
 // 	// lines := 0
 // 	// input := bufio.NewScanner(os.Stdin)
 // 	// for input.Scan() {
-// 	// 	lines++
+// 	// 	lines++s
 // 	// }
 // 	// fmt.Println(lines)
 // 	c, _ := count.NewCountie(
